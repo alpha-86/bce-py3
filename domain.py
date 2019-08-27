@@ -25,12 +25,3 @@ class domain(bce3):
     def edit(self, record_id, domain, view, rd_type, ttl, rdata, zone_name):
         pass
 
-
-
-
-if __name__ == '__main__':
-    api_key = '6b96bf9eb7324aa0a46d41286f17689a'
-    api_secret = '0f76567dc36c4b87bc61b8751d0b729a'
-    d = domain(api_key, api_secret)
-    resolve_list = d.resolve_list('cqcy.ltd', 1, 100)
-    print(resolve_list)
