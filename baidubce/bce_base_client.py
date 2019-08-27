@@ -34,6 +34,7 @@ class BceBaseClient(object):
         :param region_supported: true if this client supports region.
         :type region_supported: bool
         """
+        return
         self.service_id = self._compute_service_id()
         self.region_supported = region_supported
         # just for debug
