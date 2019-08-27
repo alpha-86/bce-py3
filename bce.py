@@ -8,6 +8,7 @@ from baidubce.http import bce_http_client
 from baidubce.http import handler
 from baidubce.auth import bce_v1_signer
 from baidubce import utils
+from baidubce import bce_client_configuration
 
 
 class bce3(BceBaseClient):
@@ -23,10 +24,13 @@ class bce3(BceBaseClient):
         self.api_name = self.__class__.__name__.replace('_', '/')
         self.api_name = self.api_name.encode("utf-8")
         self.host = b'bcd.baidubce.com'
+        self.init_conf()
         BceBaseClient.__init__(self, None)
 
     def set_host(self, host):
         self.host = host.encode("utf-8")
+        self.config = None
+        self.init_conf()
 
     def set_api_name(self, api_name):
         self.api_name = api_name.replace('_','/').encode("utf-8")
@@ -34,12 +38,13 @@ class bce3(BceBaseClient):
     def init_conf(self):
         if self.config is not None:
             return
-        self.config = BceClientConfiguration(credentials=BceCredentials(self.__api_key, self.__api_secret), endpoint = self.host)
-
+        self.config = copy.deepcopy(bce_client_configuration.DEFAULT_CONFIG)
+        new_config = BceClientConfiguration(credentials=BceCredentials(self.__api_key, self.__api_secret), endpoint = self.host)
+        self.config = self._merge_config(new_config)
 
     def _merge_config(self, config):
         if config is None:
-            return self.conf
+            return self.config
         else:
             new_config = copy.copy(self.config)
             new_config.merge_non_none_values(config)
@@ -73,7 +78,6 @@ class bce3(BceBaseClient):
         path = {1: self._get_path,
                 2: self._get_path_v2
                 }[api_version](config, function_name, key)
-
         if body_parser is None:
             body_parser = handler.parse_json
 
