@@ -16,12 +16,33 @@ class domain(bce3):
         }
         return self._send_request(http_methods.POST, 'resolve_list', body=json.dumps(data))
 
-    def add(self, domain, view, rd_type, ttl, rdata, zone_name):
-        pass
+    def resolve_add(self, domain, view, rd_type, ttl, rdata, zone_name):
+        data = {
+            'domain': domain,
+            'view': view,
+            'rdType': rd_type,
+            'ttl':ttl,
+            'rdata':rdata,
+            'zoneName':zone_name
+        }
+        return self._send_request(http_methods.POST, 'resolve_add', body=json.dumps(data))
 
-    def delete(self, zone_name, record_id):
-        pass
+    def resolve_delete(self, zone_name, record_id):
+        data = {
+            'zoneName': zone_name,
+            'recordId': record_id
+        }
+        return self._send_request(http_methods.POST, 'resolve_delete', body=json.dumps(data))
 
-    def edit(self, record_id, domain, view, rd_type, ttl, rdata, zone_name):
-        pass
+    def resolve_edit(self, record_id, domain, view, rd_type, ttl, rdata, zone_name):
+        data = {
+            'recordId':record_id,
+            'domain': domain,
+            'view': view,
+            'rdType': rd_type,
+            'ttl': ttl,
+            'rdata': rdata,
+            'zoneName': zone_name
+        }
+        return self._send_request(http_methods.POST, 'resolve_edit', body=json.dumps(data))
 
