@@ -1,2 +1,3 @@
 # bce-py3
-baidu cloude domain resolve api sdk
+baidu cloud domain resolve api sdk
+support ddns by baidu cloud domain api
