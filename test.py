@@ -14,5 +14,5 @@ if __name__ == '__main__':
     #add1 = d.resolve_add('t1', 'DEFAULT', 'CNAME', 600, 'www.baidu.com', domain_name)
     #print(add1)
 
-    #edit1 = d.resolve_edit('13801407', 't1', 'DEFAULT', 'CNAME', 600, 'www2.baidu.com', domain_name)
+    #edit1 = d.resolve_edit('13827197', 't1', 'DEFAULT', 'CNAME', 600, 'www2.baidu.com', domain_name)
     #print(edit1)

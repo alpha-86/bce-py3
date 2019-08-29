@@ -46,3 +46,8 @@ class domain(bce3):
         }
         return self._send_request(http_methods.POST, 'resolve_edit', body=json.dumps(data))
 
+    def get_info_by_subdomain(self, resolve_list, sub_domain):
+        for i in resolve_list:
+            if sub_domain == i.domain:
+                return i
+        return None
